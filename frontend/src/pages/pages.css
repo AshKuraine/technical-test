@@ -1,0 +1,17 @@
+.root-container {
+    background-color: #2F4050;
+    min-height: 100vh;  /* Permite crecer si es necesario */
+    display: flex;
+    justify-content: center;
+    overflow: hidden; /* Evita desbordamiento */
+}
+
+.information {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 95%;
+    padding: 30px;
+    color: white;
+}
