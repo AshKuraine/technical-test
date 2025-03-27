@@ -30,7 +30,9 @@ const OrderForm = () => {
     const getProducts = async () => {
         try {
             const response = await Axios.get(apiUrl + "/api/products/");
-            if (response.status === 200) setProducts(response.data);
+            if (response.status === 200) {
+                setProducts(response.data.rows);
+            }
         } catch (error) {
             console.error("Error getting products:", error);
         }
@@ -41,6 +43,7 @@ const OrderForm = () => {
             const response = await Axios.get(apiUrl + "/api/orders/" + id);
             if (response.status === 200) {
                 const data = response.data;
+                console.log(response.data);
                 getOrderProducts(data.id);
                 setOrder({
                     ...data,
@@ -59,7 +62,7 @@ const OrderForm = () => {
         try {
             const response = await Axios.get(apiUrl + "/api/orderProducts/" + orderId);
             if (response.status === 200) {
-                const updatedProducts = response.data.map((p) => ({
+                const updatedProducts = response.data.rows.map((p) => ({
                     ...p,
                     total_price: parseFloat(p.total_price).toFixed(2),
                 }));

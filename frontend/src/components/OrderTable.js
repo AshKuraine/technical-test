@@ -14,9 +14,9 @@ const OrdersTable = () => {
 
     const getOrders = async () => {
         try {
-            const response = await Axios.get(apiUrl+"/api/orders/");
+            const response = await Axios.get(apiUrl + "/api/orders/");
             if (response.status === 200) {
-                setOrders(response.data);
+                setOrders(response.data.rows);
             }
         } catch (error) {
             console.error("Error getting orders:", error);
