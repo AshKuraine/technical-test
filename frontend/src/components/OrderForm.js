@@ -79,10 +79,28 @@ const OrderForm = () => {
     };
 
     const handleAddProduct = (newProduct) => {
-        newProduct.total_price = (newProduct.unit_price * newProduct.quantity).toFixed(2);
-        const updatedProducts = [...order.products, newProduct];
-        updateOrderData(updatedProducts);
-    };
+        setOrder((prevOrder) => {
+            const existingProductIndex = prevOrder.products.findIndex(p => p.id === newProduct.id);
+    
+            let updatedProducts;
+            if (existingProductIndex !== -1) {
+                updatedProducts = [...prevOrder.products];
+                updatedProducts[existingProductIndex].quantity += newProduct.quantity;
+                updatedProducts[existingProductIndex].total_price = 
+                    (updatedProducts[existingProductIndex].unit_price * updatedProducts[existingProductIndex].quantity).toFixed(2);
+            } else {
+                newProduct.total_price = (newProduct.unit_price * newProduct.quantity).toFixed(2);
+                updatedProducts = [...prevOrder.products, newProduct];
+            }
+    
+            return {
+                ...prevOrder,
+                products: updatedProducts,
+                num_products: updatedProducts.length,
+                final_price: updatedProducts.reduce((sum, p) => sum + parseFloat(p.total_price), 0).toFixed(2),
+            };
+        });
+    };    
 
     const handleRemoveProduct = (index) => {
         const updatedProducts = order.products.filter((_, i) => i !== index);
