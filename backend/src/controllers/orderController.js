@@ -17,8 +17,7 @@ exports.getOrderById = async (req, res) => {
         if (results.length === 0) {
             return res.status(404).json({ message: 'Order not found' });
         }
-
-        return res.status(200).json(results[0]);
+        return res.status(200).json(results.rows[0]);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
