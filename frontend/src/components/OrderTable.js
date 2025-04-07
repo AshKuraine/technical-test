@@ -6,7 +6,7 @@ import ModalConfirmation from "./ModalConfirmation";
 
 const OrdersTable = () => {
     const [orders, setOrders] = useState([]);
-    const [editedStatuses, setEditedStatuses] = useState({}); // Almacenar cambios locales
+    const [editedStatuses, setEditedStatuses] = useState({});
     const [selectedOrder, setSelectedOrder] = useState(null);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
