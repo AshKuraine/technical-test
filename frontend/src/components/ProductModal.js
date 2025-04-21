@@ -38,6 +38,7 @@ const ProductModal = ({ open, onClose, products, onAddProduct }) => {
                     onChange={(e) => setQuantity(Number(e.target.value))}
                     fullWidth
                     margin="normal"
+                    htmlInput={{ min: 1 }}
                 />
             </DialogContent>
             <DialogActions>
