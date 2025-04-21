@@ -69,7 +69,7 @@ const OrderForm = () => {
                 setOrder((prevOrder) => ({
                     ...prevOrder,
                     products: updatedProducts,
-                    num_products: updatedProducts.length,
+                    num_products: updatedProducts.reduce((sum, p) => sum + p.quantity, 0),
                     final_price: updatedProducts.reduce((sum, p) => sum + parseFloat(p.total_price), 0).toFixed(2),
                 }));
             }
@@ -96,7 +96,7 @@ const OrderForm = () => {
             return {
                 ...prevOrder,
                 products: updatedProducts,
-                num_products: updatedProducts.length,
+                num_products: updatedProducts.reduce((sum, p) => sum + p.quantity, 0),
                 final_price: updatedProducts.reduce((sum, p) => sum + parseFloat(p.total_price), 0).toFixed(2),
             };
         });
@@ -121,7 +121,7 @@ const OrderForm = () => {
         setOrder({
             ...order,
             products: updatedProducts,
-            num_products: updatedProducts.length,
+            num_products: updatedProducts.reduce((sum, p) => sum + p.quantity, 0),
             final_price: updatedProducts.reduce((sum, p) => sum + parseFloat(p.total_price), 0).toFixed(2),
         });
     };
