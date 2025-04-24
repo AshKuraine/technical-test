@@ -1,9 +1,9 @@
 .root-container {
     background-color: #2F4050;
-    min-height: 100vh;  /* Permite crecer si es necesario */
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    overflow: hidden; /* Evita desbordamiento */
+    overflow: hidden;
 }
 
 .information {
