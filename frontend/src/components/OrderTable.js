@@ -41,16 +41,18 @@ const OrdersTable = () => {
     const updateOrderStatus = async (id, newStatus) => {
         try {
             const response = await Axios.put(apiUrl+"/api/orders/"+id+"/status", { status: newStatus });
-            setOrders(prevOrders =>
-                prevOrders.map(order =>
-                    order.id === id ? { ...order, status: newStatus } : order
-                )
-            );
-            setEditedStatuses(prev => {
-                const updated = { ...prev };
-                delete updated[id];
-                return updated;
-            });
+            if (response.status === 200) {
+                setOrders(prevOrders =>
+                    prevOrders.map(order =>
+                        order.id === id ? { ...order, status: newStatus } : order
+                    )
+                );
+                setEditedStatuses(prev => {
+                    const updated = { ...prev };
+                    delete updated[id];
+                    return updated;
+                });
+            }
         } catch (error) {
             console.error("Error updating order status:", error);
         }
